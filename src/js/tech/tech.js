@@ -615,11 +615,14 @@ class Tech extends Component {
         return;
       }
 
+      if (!this.options_['vtt.js']) {
+        throw new Error('vtt.js option is not set.');
+      }
       // load vtt.js via the script location option or the cdn of no location was
       // passed in
       const script = document.createElement('script');
 
-      script.src = this.options_['vtt.js'] || 'https://vjs.zencdn.net/vttjs/0.14.1/vtt.min.js';
+      script.src = this.options_['vtt.js'];
       script.onload = () => {
         /**
          * Fired when vtt.js is loaded.
